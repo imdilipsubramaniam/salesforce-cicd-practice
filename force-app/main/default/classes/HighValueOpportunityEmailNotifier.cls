@@ -18,7 +18,7 @@ public with sharing class HighValueOpportunityEmailNotifier implements Queueable
                 sendEmail.setToAddresses(new List<String> {opp.Account.Owner.Email});
                 sendEmail.setSubject('High Value Opportunity Created');
                 sendEmail.setPlainTextBody('New High Opportunity '+ opp.Name + 'Created with Amount '
-                +opp.Amount+ ' for the Account '+opp.Account.Name+ 'Kindly do a FOLLOW UP.'
+                +opp.Amount+ ' for the Accounts '+opp.Account.Name+ 'Kindly do a FOLLOW UP.'
                 );
                 sendEmails.add(sendEmail);
             }
