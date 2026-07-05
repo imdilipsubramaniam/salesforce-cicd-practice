@@ -31,6 +31,13 @@ jobs:
             --jwt-key-file server.key \
             --instance-url https://login.salesforce.com
 
+      - name: Deploy pipeline demo
+        run: |
+           sf project deploy start \
+            --metadata ApexClass:StringListReverser \
+            --metadata ApexClass:StringListReverserTest \
+            --target-org ${{ secrets.SF_USERNAME }}
+
       - name: Display Org
         run: |
           sf org display --target-org ${{ secrets.SF_USERNAME }}
