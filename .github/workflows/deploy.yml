@@ -34,8 +34,7 @@ jobs:
       - name: Deploy pipeline demo
         run: |
            sf project deploy start \
-            --metadata ApexClass:StringListReverser \
-            --metadata ApexClass:StringListReverserTest \
+            --metadata ApexClass:TestDeploymentFromSource \
             --target-org ${{ secrets.SF_USERNAME }}
 
       - name: Display Org
