@@ -1,4 +1,4 @@
-name: Install Salesforce CLI
+name: Test JWT Login
 
 on:
   push:
@@ -6,14 +6,30 @@ on:
       - main
 
 jobs:
-  install-cli:
+  login:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install CLI
+      - name: Install Salesforce CLI
         run: npm install @salesforce/cli --global
 
-      - name: Verify
+      - name: Verify CLI
         run: sf --version
+
+      - name: Create Key File
+        run: |
+          echo "${{ secrets.SF_JWT_KEY }}" > server.key
+
+      - name: Authenticate to Salesforce
+        run: |
+          sf org login jwt \
+            --username ${{ secrets.SF_USERNAME }} \
+            --client-id ${{ secrets.SF_CLIENT_ID }} \
+            --jwt-key-file server.key \
+            --instance-url https://login.salesforce.com
+
+      - name: Display Org
+        run: |
+          sf org display --target-org ${{ secrets.SF_USERNAME }}
