@@ -34,7 +34,7 @@ jobs:
       - name: Deploy pipeline demo
         run: |
            sf project deploy start \
-            --metadata ApexClass:SendingMessageToTargetOrg \
+            --metadata ApexClass:PipeLineTest \
             --target-org ${{ secrets.SF_USERNAME }}
 
       - name: Display Org
